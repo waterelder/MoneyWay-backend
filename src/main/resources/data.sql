@@ -1,0 +1,15 @@
+INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('1','RUB', 'Rouble');
+INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('2','USD', 'Dollar');
+INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('3','EUR', 'Euro');
+INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('4','UAH', 'Hryvnia');
+INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('5','BYN', 'New Belarusian ruble');
+INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('6','KZT', 'Tenge');
+INSERT IGNORE INTO `trackrub`.`roles` (`id`,`name`) VALUES ('1','admin');
+INSERT IGNORE INTO `trackrub`.`roles` (`id`,`name`) VALUES ('2','user');
+INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('1', '5', '5', '1' ,'<img class="ui avatar image" src="/static_images/5_rub.png">5<img>');
+INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('2', '10', '10', '1' ,'<img class="ui avatar image" src="/static_images/10_rub.png">10<img>');
+INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('3', '50', '50', '1' ,'<img class="ui avatar image" src="/static_images/50_rub.png">50<img>');
+INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('4', '100', '100', '1' ,'<img class="ui avatar image" src="/static_images/100_rub.png">100<img>');
+INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('5', '500', '500', '1' ,'<img class="ui avatar image" src="/static_images/500_rub.png">500<img>');
+INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('6', '1000', '1000', '1' ,'<img class="ui avatar image" src="/static_images/1000_rub.png">1000<img>');
+INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('7', '5000', '5000', '1' ,'<img class="ui avatar image" src="/static_images/5000_rub.png">5000<img>');
