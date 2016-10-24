@@ -1,6 +1,9 @@
 package xyz.trackbuck.domain.model.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import xyz.trackbuck.domain.model.BaseEntity;
 
 import lombok.Getter;
@@ -19,37 +22,64 @@ import java.util.Date;
 @Entity
 @Table(name = "Users")
 public class User extends BaseEntity {
+
     @Column(nullable = false)
-    String login;
+    private String username;
+
     @JsonIgnore
-    String email;
+    private String email;
+
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    Date registrationDate;
-    @JsonIgnore
-    String password;
-    @JsonIgnore
-    String address;
-    @JsonIgnore
-    String vkId;
-    @JsonIgnore
-    String vkToken;
-    @JsonIgnore
-    String fbId;
-    @JsonIgnore
-    String fbToken;
-    @JsonIgnore
-    Float lat;
-    @JsonIgnore
-    Float lon;
-    @JsonIgnore
-    String postalCode;
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "role")
-    Role role;
+    private Date registrationDate;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    Collection<CashRecord> records;
+
+    @JsonIgnore
+    private String password;
+
+    //на будущее
+    @JsonIgnore
+    private String vkId;
+
+    @JsonIgnore
+    private String vkToken;
+
+    @JsonIgnore
+    private String fbId;
+
+    @JsonIgnore
+    private String fbToken;
+
+
+    public User() {
+    }
+
+    public User(User user) {
+        this.email = user.email;
+        this.fbId = user.fbId;
+        this.vkId = user.vkId;
+        this.fbToken = user.fbToken;
+        this.vkToken = user.vkToken;
+        this.email = user.email;
+        this.username = user.username;
+        this.password = user.password;
+        this.setId(user.getId());
+        this.registrationDate = user.registrationDate;
+
+    }
+
+    public User(UnconfirmedUser user) {
+        this.email = user.getEmail();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+    }
+
+
+
+
+    @Transient
+    @Getter(AccessLevel.NONE)
+    private Integer cashCount;
+
 
 }

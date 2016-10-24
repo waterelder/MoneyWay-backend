@@ -1,0 +1,22 @@
+<html>
+<body>
+<h4>Дратути, ${user.username}!</h4>
+<br>
+<br>
+<div>
+    Благодарим Вас за регистрацию в системе <a href="https://trackcash.herokuapp.com/">trackcash.xyz</a>.
+    <br>
+    <br>
+    Для потверждения адресса электронной почты перейдите, пожалуйста, по ссылке:<br>
+    <a href="http://moneyway.xyz/#/confirm?data="${user.hash}>https://trackcash.herokuapp.com/#/confirm?data=${user.hash}</a>.
+    <br>
+    <br>
+    С уважением,<br>
+    Команда Trackcash.
+    <br>
+    <p>
+        <small>Это письмо отправлено автоматически.<br> Не надо на него отвечать</small>
+    </p>
+</div>
+</body>
+</html>

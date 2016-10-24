@@ -1,37 +1,47 @@
-package xyz.trackbuck.rest.cash;
+package xyz.trackbuck.rest.secured.cash;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import xyz.trackbuck.domain.model.cash.CashRecord;
+import xyz.trackbuck.domain.model.user.User;
 import xyz.trackbuck.domain.service.cash.CashRecordService;
+import xyz.trackbuck.security.CustomUserDetails;
+import xyz.trackbuck.security.TokenAuthentication;
 import xyz.trackbuck.util.NotFoundSearchTypeException;
 import xyz.trackbuck.util.ResponseUtil;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Created by lex on 29.09.16.
  */
+
+//TODO Обмазать запросы аспектом чтобы не обворачивать результаты ResponseEntity
 @RestController
-@RequestMapping("/cash")
+@CrossOrigin
+@RequestMapping("/rest/cash")
+@ResponseBody
 public class CashRecordRestService {
     @Autowired
     CashRecordService cashRecordService;
 
-    @RequestMapping("/search")
-    ResponseEntity<Collection<CashRecord>> findByUserId(@RequestParam(value = "param") String searchType, @RequestParam(value = "value") Object param) {
+
+    @Secured({"ROLE_ADMIN"})
+    @RequestMapping("/fullsearch")
+    Collection<CashRecord> findByUserId(@RequestParam(value = "param") String searchType, @RequestParam(value = "value") Object param) {
+
         SearchType type = SearchType.getType(searchType);
         Collection<CashRecord> resp = null;
-        try{
+
             switch (type) {
                 case CASHID:
                     resp = cashRecordService.findByCashId(param.toString());
                     break;
                 case USERID:
-                    resp =cashRecordService.findByUserId(Integer.valueOf(param.toString()));
+                    resp = cashRecordService.findByUserId(Integer.valueOf(param.toString()));
                     break;
                 case LOCALITY:
                     resp = cashRecordService.findByLocality(param.toString());
@@ -40,19 +50,29 @@ public class CashRecordRestService {
                     resp = cashRecordService.findByRegion(param.toString());
                     break;
             }
-        }catch (NotFoundSearchTypeException e){
-            return ResponseUtil.getBadRequest(e.getMessage());
-        }
 
-        return ResponseUtil.getOkRequest(resp);
+
+        return resp;
     }
 
-    @RequestMapping(value = "/lookup", method = RequestMethod.POST)
-    ResponseEntity<Collection<CashRecord>> lookUp(@RequestBody CashRecord record) {
-        return ResponseUtil.getOkRequest(cashRecordService.saveAndGetSimmular(record));
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @RequestMapping("")
+    Collection<CashRecord> findMyCashRecords() {
+        return cashRecordService.findUsersCash();
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @RequestMapping(value = "" ,method = RequestMethod.POST)
+    CashRecord saveCashRecords(@RequestBody CashRecord record) {
+        return cashRecordService.save(record);
+    }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @RequestMapping("/search")
+    Collection<CashRecord> findCashRecordsById(@RequestParam(value = "cashId") String cashId) {
+
+        return cashRecordService.findExtendedByCashId(cashId);
+    }
 
 
     private enum SearchType {

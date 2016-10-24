@@ -17,11 +17,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Banknotes")
 public class Banknote extends BaseEntity {
-    Integer currency;
-    String name;
-    String label;
+    private Integer currency;
+    private String name;
+    private String label;
     @ManyToOne
     @JoinColumn(name = "cashType")
-    BanknoteType banknoteType;
+    private BanknoteType banknoteType;
 
 }

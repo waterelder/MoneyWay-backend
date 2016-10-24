@@ -17,7 +17,7 @@ public abstract class BaseEntity implements Serializable, Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable = false, updatable = false, unique = true)
+    @Column(unique = true)
     private Integer id;
 
 

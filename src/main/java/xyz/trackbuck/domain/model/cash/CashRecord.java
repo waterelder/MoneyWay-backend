@@ -3,6 +3,7 @@ package xyz.trackbuck.domain.model.cash;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 import org.springframework.data.jpa.repository.*;
 import xyz.trackbuck.domain.model.BaseEntity;
 import xyz.trackbuck.domain.model.user.User;
@@ -43,6 +44,9 @@ public class CashRecord extends BaseEntity {
     Float lat;
     Float lon;
     String locality;
+
+    @Formula(value = "(select count(*) FROM cash_records cr WHERE cr.cash_id=cash_id)")
+    Integer countOfEntries;
 
 
 }

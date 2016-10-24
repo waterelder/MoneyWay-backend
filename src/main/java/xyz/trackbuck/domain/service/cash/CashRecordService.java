@@ -16,10 +16,15 @@ public interface CashRecordService {
 
 
     Collection<CashRecord> findByUserId(Integer userId);
+    Collection<CashRecord> findUsersCash();
     Collection<CashRecord> findByCashId(String cashId);
+    Collection<CashRecord> findExtendedByCashId(String cashId);
+    CashRecord findCashById(Integer id);
+    CashRecord save(CashRecord cashRecord);
     Collection<CashRecord> findByLocality(String locality);
     Collection<CashRecord> findByRegion(String region);
     Collection<CashRecord> findByLatAndLon(String lat, String lon);
     Collection<CashRecord> saveAndGetSimmular(CashRecord cashRecord);
+    Integer getCountOfBanknotes();
 
 }

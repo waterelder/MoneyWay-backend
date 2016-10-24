@@ -4,8 +4,8 @@ INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('
 INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('4','UAH', 'Hryvnia');
 INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('5','BYN', 'New Belarusian ruble');
 INSERT IGNORE INTO  `trackrub`.`banknote_types` (`id`, `code`, `name`) VALUES ('6','KZT', 'Tenge');
-INSERT IGNORE INTO `trackrub`.`roles` (`id`,`name`) VALUES ('1','admin');
-INSERT IGNORE INTO `trackrub`.`roles` (`id`,`name`) VALUES ('2','user');
+INSERT IGNORE INTO `trackrub`.`roles` (`id`,`name`) VALUES ('1','ADMIN');
+INSERT IGNORE INTO `trackrub`.`roles` (`id`,`name`) VALUES ('2','USER');
 INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('1', '5', '5', '1' ,'<img class="ui avatar image" src="/static_images/5_rub.png">5<img>');
 INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('2', '10', '10', '1' ,'<img class="ui avatar image" src="/static_images/10_rub.png">10<img>');
 INSERT IGNORE INTO `trackrub`.`banknotes` (`id`, `currency`, `name`, `cash_type`, `label`) VALUES ('3', '50', '50', '1' ,'<img class="ui avatar image" src="/static_images/50_rub.png">50<img>');
