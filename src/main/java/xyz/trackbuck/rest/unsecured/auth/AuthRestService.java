@@ -22,7 +22,7 @@ public class AuthRestService {
 
     @Autowired
     private UserService userService;
-
+    @CrossOrigin
     @ResponseBody
     @RequestMapping(value = "login", method = RequestMethod.POST)
     AuthResponse auth(@RequestBody AuthRequest request) throws Exception {
@@ -40,6 +40,7 @@ public class AuthRestService {
         return new BooleanResponse(userService.checkExistenceByUsername(username));
     }
     @ResponseBody
+    @CrossOrigin(methods = {RequestMethod.OPTIONS,RequestMethod.GET,RequestMethod.POST})
     @RequestMapping(value="/register", method = RequestMethod.POST)
     BooleanResponse register(@RequestBody UnconfirmedUser user) throws Exception {
         Boolean status = userService.register(user);
@@ -48,11 +49,13 @@ public class AuthRestService {
     }
     @ResponseBody
     @RequestMapping(value="/confirm")
+    @CrossOrigin(methods = {RequestMethod.OPTIONS,RequestMethod.GET,RequestMethod.POST})
     AuthResponse confirm(@RequestParam(value = "hash")String key) throws Exception {
         return userService.confirm(key);
     }
 
     @RequestMapping(value="/resent", method = RequestMethod.POST)
+    @CrossOrigin
     void resent(@RequestBody UnconfirmedUser user) throws Exception {
        userService.resentConfirmation(user);
     }

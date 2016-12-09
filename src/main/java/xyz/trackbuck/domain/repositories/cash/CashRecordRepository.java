@@ -33,9 +33,9 @@ public interface CashRecordRepository extends CrudRepository<CashRecord, Integer
     @Query("SELECT cr.cashId, count(cr.id)  FROM CashRecord cr group by(cr.cashId) ORDER BY COUNT(cr.cashId) DESC")
     Page<Object> countRecordsStat(Pageable pageable);
 
-    @Query("SELECT usr.username, count(cr.id)  FROM CashRecord cr LEFT JOIN cr.user usr group by(usr.username) ORDER BY COUNT(cr.cashId) DESC")
+    @Query("SELECT usr.username, count(cr.id)  FROM CashRecord cr LEFT JOIN cr.user usr WHERE cr.user IS NOT NULL group by(usr.username) ORDER BY COUNT(cr.cashId) DESC")
     Page<Object> countUsersStat(Pageable pageable);
 
-    @Query("SELECT cr.locality, count(cr.id)  FROM CashRecord cr group by(cr.locality) ORDER BY COUNT(cr.cashId) DESC")
+    @Query("SELECT cr.locality, count(cr.id)  FROM CashRecord cr WHERE cr.locality IS NOT NULL group by(cr.locality) ORDER BY COUNT(cr.cashId) DESC")
     Page<Object> countLocalityStat(Pageable pageable);
 }

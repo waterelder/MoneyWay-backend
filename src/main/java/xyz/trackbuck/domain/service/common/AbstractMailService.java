@@ -5,13 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
-import xyz.trackbuck.domain.model.common.Messageble;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 
 /**
  * Created by lex on 08.10.16.
